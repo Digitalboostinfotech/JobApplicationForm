@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Application Form</title>
+
+  <!-- ✅ Favicon Added -->
+  <link rel="shortcut icon" href="https://64.media.tumblr.com/8b959394da6e8c7ea4c2cfdb0a8ed762/b91f709d0189ff74-74/s250x400/11372eb97781a562bf142f8195cb1f276d4f5cbd.pnj" type="image/x-icon">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 40px;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="file"] {
+      padding: 5px;
+    }
+
+    .skills-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .skills-group label {
+      font-weight: normal;
+    }
+
+    .skills-group input {
+      width: auto;
+      margin-right: 5px;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      margin-top: 10px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: red;
+      text-align: center;
+    }
+
+    .message.success {
+      color: green;
+    }
+
+    #thankYouMessage {
+      display: none;
+      text-align: center;
+      font-size: 20px;
+      color: #28a745;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container" id="formContainer">
+    <h2>Job Application Form</h2>
+    <form id="jobForm">
+
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" name="fullName" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="1234567890" />
+      </div>
+
+      <div class="form-group">
+        <label for="photo">Upload Photo *</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required />
+      </div>
+
+      <div class="form-group">
+        <label for="resume">Upload Resume *</label>
+        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required />
+      </div>
+
+      <div class="form-group">
+        <label>Skills *</label>
+        <div class="skills-group">
+          <label><input type="checkbox" name="skills" value="Digital Marketing"> Digital Marketing</label>
+          <label><input type="checkbox" name="skills" value="SEO"> SEO</label>
+          <label><input type="checkbox" name="skills" value="WordPress"> WordPress</label>
+          <label><input type="checkbox" name="skills" value="HTML"> HTML</label>
+          <label><input type="checkbox" name="skills" value="CSS"> CSS</label>
+          <label><input type="checkbox" name="skills" value="SMM"> SMM</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Why should we hire you?</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+      </div>
+
+      <button type="submit">Submit Application</button>
+      <div class="message" id="formMessage"></div>
+    </form>
+  </div>
+
+  <div class="thank-you" id="thankYouMessage">
+    Thank you! Your application has been submitted.
+  </div>
+
+  <script>
+    document.getElementById("jobForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent actual form submission
+
+      const skillChecked = document.querySelectorAll('input[name="skills"]:checked');
+      if (skillChecked.length === 0) {
+        alert("Please select at least one skill.");
+        return;
+      }
+
+      document.getElementById("formContainer").style.display = "none";
+      document.getElementById("thankYouMessage").style.display = "block";
+    });
+  </script>
+</body>
+</html>
